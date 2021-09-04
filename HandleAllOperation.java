@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class HandleAllOperation {
@@ -51,8 +52,34 @@ public class HandleAllOperation {
 						OperateFile.createFile(fileToAdd, sc);
 						
 						break;
-					
 					case 2:
+						// File/Folder delete
+						System.out.println("Enter the name of the file to be deleted from \"main\" folder");
+						String fileToDelete = sc.next();
+						
+						OperateFile.createMainFolderIfNotPresent("main");
+						List<String> filesToDelete = OperateFile.displayFileLocations(fileToDelete, "main");
+						
+						String deletionPrompt = "\nSelect index of which file to delete?"
+								+ "\n(Enter 0 if you want to delete all elements)";
+						System.out.println(deletionPrompt);
+					
+						int idx = sc.nextInt();
+						
+						if (idx != 0) {
+							OperateFile.deleteFileRecursively(filesToDelete.get(idx - 1));
+						} else {
+							
+							// If idx == 0, delete all files displayed for the name
+							for (String path : filesToDelete) {
+								OperateFile.deleteFileRecursively(path);
+							}
+						}
+						
+
+						break;
+					
+					case 3:
 						// File/Folder Search
 						System.out.println("Enter the name of the file to be searched from \"main\" folder");
 						String fileName = sc.next();
@@ -60,8 +87,10 @@ public class HandleAllOperation {
 						OperateFile.createMainFolderIfNotPresent("main");
 						OperateFile.displayFileLocations(fileName, "main");
 break;
-						
-					case 3:
+					case 4:
+						// Go to Previous menu
+						return;
+					case 5:
 						// Exit
 						System.out.println("Program exited successfully.");
 						running = false;

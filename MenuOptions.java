@@ -26,7 +26,8 @@ public static void WelcomScreen(String appName , String developerName){
 
 					public static void displayFileMenuOptions() {
 						String fileMenu = "\n\n****** Select any option number from below and press Enter ******\n\n"
-								+ "1) Add a file to \"Main\" folder\n" + "2) Search for a file from \"Main\" folder\n" + "3) Exit program\n";
+								+ "1) Add a file to \"main\" folder\n" + "2) Delete a file from \"main\" folder\n"
+								+ "3) Search for a file from \"main\" folder\n" + "4) Show Previous Menu\n" + "5) Exit program\n";
 
 						System.out.println(fileMenu);
 					}
